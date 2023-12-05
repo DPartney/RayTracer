@@ -16,23 +16,26 @@ int main(int, char**)
 	renderer.CreateWindow("main", 800, 600);
 	Canvas canvas(400, 300, renderer);
 
-
-	Random rng = Random();
-	rng.seedRandom((unsigned int)time(NULL));
+	seedRandom((unsigned int)time(NULL));
 
 	float aspectRatio = canvas.GetSize().x / (float)canvas.GetSize().y;
 	std::shared_ptr<Camera> camera = std::make_shared<Camera>(glm::vec3{ 0, 0, 3 }, glm::vec3{ 0, 0, 0 }, glm::vec3{ 0, 1, 0 }, 70.0f, aspectRatio);
 
-	Scene scene = { color3_t{ 0, 1, 1}, color3_t{0, 1, 0} }; // sky color could be set with the top and bottom color
+	Scene scene = { 20 }; // sky color could be set with the top and bottom color
 	scene.SetCamera(camera);
 
 	auto material = std::make_shared<Lambertian>(color3_t{ 0, 0, 1 });
 
-	for (auto i = 0; i < 10; i++)
+	for (auto i = 0; i < 50; i++)
 	{
-		auto sphere = std::make_unique<Sphere>(glm::vec3{ rng.random(-2, 2), rng.random(-2, 2), rng.random(-2, 2) }, 0.1f, material);
+		auto sphere = std::make_unique<Sphere>(glm::vec3{ random(-2, 2), random(-2, 2), random(-2, 2) }, 0.1f, material);
 		scene.AddObject(std::move(sphere));
 	}
+
+	// Render Scene
+	canvas.Clear({ 0, 0, 0, 1 });
+	scene.Render(canvas, 10);
+	canvas.Update();
 
 	bool quit = false;
 	while (!quit)
@@ -66,9 +69,7 @@ int main(int, char**)
 			break;
 		}
 
-		canvas.Clear({ 0, 0, 0, 1 });
-		scene.Render(canvas);
-		canvas.Update();
+
 
 		renderer.PresentCanvas(canvas);
 	}
