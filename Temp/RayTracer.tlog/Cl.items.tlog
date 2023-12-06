@@ -2,6 +2,9 @@ C:\Users\thesh_30gz4\source\repos\RayTracer\Source\Camera.cpp;C:\Users\thesh_30g
 C:\Users\thesh_30gz4\source\repos\RayTracer\Source\Canvas.cpp;C:\Users\thesh_30gz4\source\repos\RayTracer\Temp\Canvas.obj
 C:\Users\thesh_30gz4\source\repos\RayTracer\Source\Main.cpp;C:\Users\thesh_30gz4\source\repos\RayTracer\Temp\Main.obj
 C:\Users\thesh_30gz4\source\repos\RayTracer\Source\Material.cpp;C:\Users\thesh_30gz4\source\repos\RayTracer\Temp\Material.obj
+C:\Users\thesh_30gz4\source\repos\RayTracer\Source\Mesh.cpp;C:\Users\thesh_30gz4\source\repos\RayTracer\Temp\Mesh.obj
+C:\Users\thesh_30gz4\source\repos\RayTracer\Source\Plane.cpp;C:\Users\thesh_30gz4\source\repos\RayTracer\Temp\Plane.obj
 C:\Users\thesh_30gz4\source\repos\RayTracer\Source\Renderer.cpp;C:\Users\thesh_30gz4\source\repos\RayTracer\Temp\Renderer.obj
 C:\Users\thesh_30gz4\source\repos\RayTracer\Source\Scene.cpp;C:\Users\thesh_30gz4\source\repos\RayTracer\Temp\Scene.obj
 C:\Users\thesh_30gz4\source\repos\RayTracer\Source\Sphere.cpp;C:\Users\thesh_30gz4\source\repos\RayTracer\Temp\Sphere.obj
+C:\Users\thesh_30gz4\source\repos\RayTracer\Source\Triangle.cpp;C:\Users\thesh_30gz4\source\repos\RayTracer\Temp\Triangle.obj

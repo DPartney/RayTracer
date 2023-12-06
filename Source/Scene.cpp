@@ -2,8 +2,13 @@
 #include "Canvas.h"
 #include "MathUtils.h"
 #include "Random.h"
+#include "Sphere.h"
+#include "Plane.h"
+#include "Mesh.h"
+#include <iostream>
+#include <iomanip>
 
-void Scene::Render(Canvas& canvas, int numSamples)
+void Scene::Render(Canvas& canvas, int numSamples, int depth)
 {
 	// cast ray for each point (pixel) on the canvas
 	for (int y = 0; y < canvas.GetSize().y; y++)
@@ -31,8 +36,10 @@ void Scene::Render(Canvas& canvas, int numSamples)
 				// cast ray into scene
 				// add color value from trace
 				raycastHit_t raycastHit;
-				color += Trace(ray, 0, 100, raycastHit, m_depth);
+				color += Trace(ray, 0, 100, raycastHit, depth);
 			}
+
+			std::cout << std::setprecision(2) << std::setw(5) << ((y / (float)canvas.GetSize().y) * 100) << "%\n";
 
 			// draw color to canvas point (pixel)
 			// get average color (average = (color + color + color) / number of samples)
@@ -41,6 +48,7 @@ void Scene::Render(Canvas& canvas, int numSamples)
 		}
 	}
 }
+
 color3_t Scene::Trace(const ray_t& ray, float minDistance, float maxDistance, raycastHit_t& raycastHit, int depth)
 {
 	bool rayHit = false;
@@ -72,8 +80,8 @@ color3_t Scene::Trace(const ray_t& ray, float minDistance, float maxDistance, ra
 		}
 		else
 		{
-			// reached maximum depth of bounces (color is black)
-			return color3_t{ 0, 0, 0 };
+			// reached maximum depth of bounces (get emissive color, will be black except for Emissive materials)			
+			return raycastHit.material->GetEmissive();
 		}
 	}
 
@@ -84,3 +92,4 @@ color3_t Scene::Trace(const ray_t& ray, float minDistance, float maxDistance, ra
 
 	return color;
 }
+
